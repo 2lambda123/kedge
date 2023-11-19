@@ -6,8 +6,8 @@ WORKDIR ${GOPATH}/src/github.com/improbable-eng/kedge
 
 ARG BUILD_VERSION
 RUN echo "Installing Kedge with version ${BUILD_VERSION}"
-RUN go install -ldflags "-X main.BuildVersion=${BUILD_VERSION}" github.com/improbable-eng/kedge/cmd/kedge
-RUN go install -ldflags "-X main.BuildVersion=${BUILD_VERSION}" github.com/improbable-eng/kedge/cmd/winch
+RUN CGO_ENABLED=0 go install -ldflags "-X main.BuildVersion=${BUILD_VERSION}" github.com/improbable-eng/kedge/cmd/kedge
+RUN CGO_ENABLED=0 go install -ldflags "-X main.BuildVersion=${BUILD_VERSION}" github.com/improbable-eng/kedge/cmd/winch
 
 FROM ubuntu:18.04
 
